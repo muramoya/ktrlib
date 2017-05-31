@@ -1,0 +1,10 @@
+<?php
+
+use KTR\DevTools\Migration\AbstractMigration;
+
+class DummyClass extends AbstractMigration
+{
+    public function up()
+    {
+    }
+}

@@ -1,0 +1,18 @@
+<?php
+
+namespace DummyNameSpace\Apps\Models;
+
+use KTR\ModelTimestampableTrait;
+use Phalcon\Mvc\Model;
+
+class DummyClass extends Model
+{
+    use ModelTimestampableTrait;
+
+    public $id;
+
+    public function onConstruct() {
+        $this->setSource('DummyTable');
+        $this->addTimestampableBehavior();
+    }
+}

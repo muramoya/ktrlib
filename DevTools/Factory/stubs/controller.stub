@@ -1,0 +1,33 @@
+<?php
+
+namespace DummyNameSpace\Apps\Controllers;
+
+use Phalcon\Mvc\Controller;
+
+class DummyClass extends Controller
+{
+    public function index()
+    {
+
+    }
+
+    public function show()
+    {
+
+    }
+
+    public function create()
+    {
+
+    }
+
+    public function edit()
+    {
+
+    }
+
+    public function delete()
+    {
+
+    }
+}

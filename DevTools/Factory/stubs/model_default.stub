@@ -1,0 +1,16 @@
+<?php
+
+namespace DummyNameSpace\Apps\Models;
+
+use Phalcon\Mvc\Model;
+
+class DummyClass extends Model
+{
+
+    public $id;
+
+    public function initialize() {
+        $this->setSource('DummyTable');
+    }
+
+}

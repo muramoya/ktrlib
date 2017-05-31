@@ -1,0 +1,21 @@
+<?php
+
+namespace DummyNameSpace\Apps\Models;
+
+use KTR\ModelSoftDeleteTrait;
+use KTR\ModelTimestampableTrait;
+use Phalcon\Mvc\Model;
+
+class DummyClass extends Model
+{
+    use ModelSoftDeleteTrait;
+    use ModelTimestampableTrait;
+
+    public $id;
+
+    public function onConstruct() {
+        $this->setSource('DummyTable');
+        $this->addSoftDeleteBehavior();
+        $this->addTimestampableBehavior();
+    }
+}

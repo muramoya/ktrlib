@@ -1,0 +1,12 @@
+<?php
+
+use KTR\DevTools\Migration\AbstractMigration;
+
+class DummyClass extends AbstractMigration
+{
+    public function up()
+    {
+        $this->tableName('DummyTable');
+        $this->integer('id')->increment();
+    }
+}
