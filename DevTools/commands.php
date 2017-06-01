@@ -7,11 +7,11 @@
  */
 
 return [
-    'KTR\\DevTools\\Factory\\Migrate',
-    'KTR\\DevTools\\Factory\\Controller',
-    'KTR\\DevTools\\Factory\\Model',
-    'KTR\\DevTools\\Factory\\Seeder',
-    'KTR\\DevTools\\Factory\\Command',
-    'KTR\\DevTools\\Migration\\Migration',
-    'KTR\\DevTools\\Db\\Seed',
+    'KTRLib\\DevTools\\Factory\\Migrate',
+    'KTRLib\\DevTools\\Factory\\Controller',
+    'KTRLib\\DevTools\\Factory\\Model',
+    'KTRLib\\DevTools\\Factory\\Seeder',
+    'KTRLib\\DevTools\\Factory\\Command',
+    'KTRLib\\DevTools\\Migration\\Migration',
+    'KTRLib\\DevTools\\Db\\Seed',
 ];

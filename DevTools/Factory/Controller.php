@@ -6,9 +6,9 @@
  * @version: 1.0
  */
 
-namespace KTR\DevTools\Factory;
+namespace KTRLib\DevTools\Factory;
 
-use KTR\Config;
+use KTRLib\Config;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;

@@ -6,9 +6,9 @@
  * @version: 1.0
  */
 
-namespace KTR\Session;
+namespace KTRLib\Session;
 
-use KTR\Config;
+use KTRLib\Config;
 use Phalcon\Session\Adapter\Files;
 use Phalcon\Session\Adapter\Libmemcached;
 use Phalcon\Session\Adapter\Redis;

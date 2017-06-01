@@ -6,7 +6,7 @@
  * @version: 1.0
  */
 
-namespace KTR;
+namespace KTRLib;
 
 use Phalcon\Mvc\Model\Behavior\Timestampable;
 

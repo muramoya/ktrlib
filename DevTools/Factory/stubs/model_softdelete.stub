@@ -2,7 +2,7 @@
 
 namespace DummyNameSpace\Apps\Models;
 
-use KTR\ModelSoftDeleteTrait;
+use KTRLib\ModelSoftDeleteTrait;
 use Phalcon\Mvc\Model;
 
 class DummyClass extends Model

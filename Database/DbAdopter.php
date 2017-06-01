@@ -6,9 +6,9 @@
  * @version: 1.0
  */
 
-namespace KTR\Database;
+namespace KTRLib\Database;
 
-use KTR\Config;
+use KTRLib\Config;
 use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Db\Adapter\Pdo\Postgresql;
 use Phalcon\Db\Adapter\Pdo\Sqlite;

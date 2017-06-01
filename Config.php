@@ -7,7 +7,7 @@
  * @version: 1.0
  */
 
-namespace KTR;
+namespace KTRLib;
 
 use Phalcon\Config\Adapter\Php as ConfigPhp;
 use Phalcon\Config\Adapter\Ini as ConfigIni;

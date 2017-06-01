@@ -6,8 +6,8 @@
  * @version: 1.0
  */
 
-use KTR\Config;
-use KTR\KtrRuntimeException;
+use KTRLib\Config;
+use KTRLib\KtrRuntimeException;
 
 /**
  * 環境変数を取得する

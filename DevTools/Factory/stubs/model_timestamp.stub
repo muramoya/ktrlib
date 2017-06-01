@@ -2,7 +2,7 @@
 
 namespace DummyNameSpace\Apps\Models;
 
-use KTR\ModelTimestampableTrait;
+use KTRLib\ModelTimestampableTrait;
 use Phalcon\Mvc\Model;
 
 class DummyClass extends Model

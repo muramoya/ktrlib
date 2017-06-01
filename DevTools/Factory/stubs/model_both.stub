@@ -2,8 +2,8 @@
 
 namespace DummyNameSpace\Apps\Models;
 
-use KTR\ModelSoftDeleteTrait;
-use KTR\ModelTimestampableTrait;
+use KTRLib\ModelSoftDeleteTrait;
+use KTRLib\ModelTimestampableTrait;
 use Phalcon\Mvc\Model;
 
 class DummyClass extends Model

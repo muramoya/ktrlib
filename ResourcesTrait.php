@@ -6,7 +6,7 @@
  * @version: 1.0
  */
 
-namespace KTR;
+namespace KTRLib;
 
 use Phalcon\Paginator\Adapter\Model as Paginator;
 
@@ -75,7 +75,7 @@ trait ResourcesTrait
     {
         $cond = $this->getConditions($conditions, $columns);
 
-        if (in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
+        if (in_array('KTRLib\\ModelSoftDeleteTrait', class_uses($this->model)))
         {
             $res = $this->model::find($cond, $withDeleted);
         }
@@ -98,7 +98,7 @@ trait ResourcesTrait
     {
         $cond = $this->getConditions($conditions, $columns);
 
-        if (in_array('KTR\\ModelSoftDeleteTrait', class_uses($this->model)))
+        if (in_array('KTRLib\\ModelSoftDeleteTrait', class_uses($this->model)))
         {
             $res = $this->model::findFirst($cond, $withDeleted);
         }

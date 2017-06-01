@@ -7,7 +7,7 @@
  * @version: 1.0
  */
 
-namespace KTR\DevTools\Migration;
+namespace KTRLib\DevTools\Migration;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;

@@ -6,7 +6,7 @@
  * @version: 1.0
  */
 
-namespace KTR;
+namespace KTRLib;
 
 class KtrRuntimeException extends \Exception
 {

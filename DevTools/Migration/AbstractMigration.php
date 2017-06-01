@@ -6,7 +6,7 @@
  * @version: 1.0
  */
 
-namespace KTR\DevTools\Migration;
+namespace KTRLib\DevTools\Migration;
 
 use Phinx\Db\Table;
 use Phinx\Migration\AbstractMigration as PhAbstMig;

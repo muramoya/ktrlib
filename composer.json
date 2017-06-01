@@ -12,7 +12,7 @@
   },
   "autoload": {
     "psr-4": {
-      "KTR\\": "./"
+      "KTRLib\\": "./"
     },
     "files": ["./helper.php"]
   }
