@@ -2,7 +2,7 @@
 /**
  * セッションクラス管理
  * Date: 2017/05/22
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

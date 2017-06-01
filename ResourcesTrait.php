@@ -2,7 +2,7 @@
 /**
  * データ一覧取得Trait
  * Date: 2016/08/06
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 
@@ -30,7 +30,7 @@ trait ResourcesTrait
 
     public function setModel($name)
     {
-        $class = \env('APP_NAMESPACE').'\\Models\\'.$name;
+        $class = \env('APP_NAMESPACE').'\\Apps\\Models\\'.$name;
         $this->model = new $class;
     }
 

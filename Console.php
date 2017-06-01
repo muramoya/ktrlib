@@ -2,7 +2,7 @@
 /**
  * kotoriコマンドbootstrap
  * Date: 2017/06/01
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 
@@ -23,9 +23,9 @@ class Console
      */
     private $input = null;
 
-    public function __construct($command = null)
+    public function __construct($command = null, $options = array())
     {
-        if (!is_null($command))$this->input = new ArrayInput(['command' => $command]);
+        if (!is_null($command)) $this->input = new ArrayInput(['command' => $command]);
     }
 
     public function run()
@@ -45,15 +45,5 @@ class Console
 
         $cli->addCommands($classes);
         $cli->run($this->input);
-    }
-
-    public function setArgument($key, $val)
-    {
-        $this->input->setArgument($key, $val);
-    }
-
-    public function setOption($key, $val)
-    {
-        $this->input->setOption($key, $val);
     }
 }

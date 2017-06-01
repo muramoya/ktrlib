@@ -2,7 +2,7 @@
 /**
  * マイグレーションファイル抽象クラス
  * Date: 2017/05/30
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

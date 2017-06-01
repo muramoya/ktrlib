@@ -2,7 +2,7 @@
 /**
  * trait Model created_at, updated_atに自動でタイムスタンプを設定
  * Date: 2016/08/25
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

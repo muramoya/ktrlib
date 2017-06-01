@@ -3,7 +3,7 @@
  * マイグレーション実行クラス
  * phinxをそのまま使っています
  * Date: 2017/05/30
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 
@@ -46,7 +46,9 @@ class Migration extends Command
         if(strlen($input->getOption('date') > 0)) $opt .= '-d' . $input->getOption('date');
 
         $exec = sprintf($exec , $cmd, $input->getArgument('manipulation'), $args['configuration'], 'dev', $opt);
+        putenv('PH_APP_BASE_PATH='.APP_BASE_PATH);
         exec($exec, $out, $ret);
+        putenv('PH_APP_BASE_PATH=');
 
         $msgType = $ret === 0 ? '<info>%s</info>' : '<bg=red>%s</bg=red>';
         $output->writeln(sprintf($msgType, implode("\n", $out)));

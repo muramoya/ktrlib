@@ -2,7 +2,7 @@
 /**
  * trait Model delete時に論理削除をする
  * Date: 2016/08/25
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

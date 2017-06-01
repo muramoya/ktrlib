@@ -2,7 +2,7 @@
 /**
  * ユーザ定義kotoriコマンドファイル生成クラス
  * Date: 2017/05/28
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

@@ -2,8 +2,8 @@
 
 return [
     'paths' => [
-        'migrations' => APP_BASE_PATH . '/database/migrations',
-        'seeds' => APP_BASE_PATH . '/database/seeds'
+        'migrations' => env('PH_APP_BASE_PATH') . '/database/migrations',
+        'seeds' => env('PH_APP_BASE_PATH') . '/database/seeds'
     ],
     'environments' => [
         'default_migration_table' => 'migration',

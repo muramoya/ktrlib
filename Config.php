@@ -3,7 +3,7 @@
  * 設定ファイル読み込みファクトリ
  * 拡張子によって返却クラスを変更する
  * Date: 2017/05/21
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 

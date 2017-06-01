@@ -2,7 +2,7 @@
 /**
  * 様々な関数群
  * Date: 2017/05/21
- * @author takuya
+ * @author muramoya
  * @version: 1.0
  */
 
