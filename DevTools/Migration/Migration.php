@@ -32,7 +32,7 @@ class Migration extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $exec = '%s %s --configuration=%s -e %s %s 2>&1';
-        $cmd = realpath(__DIR__ . '/../../../vendor') . '/bin/phinx';
+        $cmd = APP_BASE_PATH . '/vendor/bin/phinx';
         $args['configuration'] = __DIR__ . '/../Migration/phinx.php';
         $opt = '';
         if(strlen($input->getOption('target')) > 0)
