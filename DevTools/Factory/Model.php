@@ -51,7 +51,7 @@ class Model extends Command
 
 
         $fileName = $class . '.php';
-        $path = realpath(__DIR__ . '/../../../apps/models') . '/' . $fileName;
+        $path = env('APP_BASE_PATH') . '/apps/models/' . $fileName;
 
         if (file_exists($path))
         {

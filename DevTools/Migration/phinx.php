@@ -1,10 +1,9 @@
 <?php
-require_once __DIR__.'/../../helper.php';
 
 return [
     'paths' => [
-        'migrations' => __DIR__ . '/../../../database/migrations',
-        'seeds' => __DIR__ . '/../../../database/seeds'
+        'migrations' => env('APP_BASE_PATH') . '/database/migrations',
+        'seeds' => env('APP_BASE_PATH') . '/database/seeds'
     ],
     'environments' => [
         'default_migration_table' => 'migration',

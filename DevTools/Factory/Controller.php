@@ -34,7 +34,7 @@ class Controller extends Command
         $stub = str_replace('DummyClass',  $input->getArgument('name'), $stub);
 
         $fileName = $input->getArgument('name') . '.php';
-        $path = realpath(__DIR__ . '/../../../apps/controllers') . '/' . $fileName;
+        $path = env('APP_BASE_PATH') . '/apps/controllers/' . $fileName;
 
         if (file_exists($path))
         {
