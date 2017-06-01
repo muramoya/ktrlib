@@ -1,6 +1,6 @@
 {
   "name": "muramoya/ktrlib",
-  "description": "Phalcon3.1.2 based framework",
+  "description": "Phalcon3.1.2 based framework libraries",
   "license": "MIT",
   "require": {
     "php": ">=7.1.0",
