@@ -23,7 +23,7 @@ class Config
      */
     public static function factory($file) {
         if (strpos($file, '/') === false) {
-            $file = realpath(env('APP_BASE_PATH').'/conf') . '/' . $file;
+            $file = realpath(APP_BASE_PATH.'/conf') . '/' . $file;
         }
 
         if (!file_exists($file)) return false;

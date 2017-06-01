@@ -44,7 +44,7 @@ class Command extends SyCommand
 
 
         $fileName = $input->getOption('class') . '.php';
-        $fileDir = env('APP_BASE_PATH') . '/apps/commands';
+        $fileDir = APP_BASE_PATH . '/apps/commands';
         if(!is_dir($fileDir)) mkdir($fileDir, 0755);
         $path = realpath($fileDir) . '/' . $fileName;
 
@@ -58,7 +58,7 @@ class Command extends SyCommand
 
         $fullNameSpace = $appConf->appNameSpace . '\\Apps\\Commands\\' . $input->getOption('class');
 
-        $confFile = env('APP_BASE_PATH') . '/conf/commands.php';
+        $confFile = APP_BASE_PATH . '/conf/commands.php';
         $conf = file($confFile);
         $searchStrs = array_map(function($val) {
             return trim($val, PHP_EOL);

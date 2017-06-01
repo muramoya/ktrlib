@@ -41,7 +41,7 @@ class Migrate extends Command
         $stub = str_replace('DummyClass',  $input->getArgument('name'), $stub);
         if ($type = 'create') $stub = str_replace('DummyTable', $input->getOption('create'), $stub);
 
-        $files = scandir(env('APP_BASE_PATH') . '/database/migrations');
+        $files = scandir(APP_BASE_PATH . '/database/migrations');
         foreach ($files as $file)
         {
             if ($file == '.' || $file == '..') continue;
@@ -52,7 +52,7 @@ class Migrate extends Command
             }
         }
         $fileName = date('YmdHis') . '_' . underscore($input->getArgument('name')) . '.php';
-        $path = env('APP_BASE_PATH') . '/database/migrations/' . $fileName;
+        $path = APP_BASE_PATH . '/database/migrations/' . $fileName;
         file_put_contents($path, $stub);
 
         $output->writeln('<info>' . $path . ' created successfully.</info>');
