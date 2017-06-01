@@ -24,8 +24,8 @@ class Migration extends Command
             ->setDescription('Migration')
             ->setDefinition([
                 new InputArgument('manipulation', InputArgument::OPTIONAL, '', 'migrate'),
-                new InputOption('target', 't', InputOption::VALUE_REQUIRED),
-                new InputOption('date', 'd', InputOption::VALUE_REQUIRED)
+                new InputOption('target', 't', InputOption::VALUE_OPTIONAL),
+                new InputOption('date', 'd', InputOption::VALUE_OPTIONAL)
             ]);
     }
 
