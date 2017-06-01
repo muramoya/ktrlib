@@ -1,7 +1,7 @@
 インストール
 
 ```
-composer require muramoya/kotori
+composer require muramoya/ktrlib
 ```
 
 Copyright (c) 2017 muramoya  
