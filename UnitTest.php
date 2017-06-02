@@ -34,8 +34,7 @@ class UnitTest
         /*
          * dotenv
          ************************/
-        $env = $di->get('env');
-        $env->load();
+        $di->get('env');
 
         /*
          * autoload
