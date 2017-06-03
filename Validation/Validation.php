@@ -405,6 +405,7 @@ class Validation extends PhValidation
         if(is_null($this->ruleName)) throw new KtrUndefinedException("Rule name isn't defined.\nSet validation rule before this function.");
         $rule = is_null($this->ruleNameGroup) ? $this->ruleName : $this->ruleNameGroup;
         $this->rules[$rule]['cancelOnFail'] = true;
+        return $this;
     }
 
     /**
@@ -417,6 +418,7 @@ class Validation extends PhValidation
         if(is_null($this->ruleName)) throw new KtrUndefinedException("Rule name isn't defined.\nSet validation rule before this function.");
         $rule = is_null($this->ruleNameGroup) ? $this->ruleName : $this->ruleNameGroup;
         $this->rules[$rule]['allowEmpty'] = true;
+        return $this;
     }
 
     /**
