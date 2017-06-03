@@ -70,20 +70,23 @@ class Logger
     const DEBUG = 'debug';
 
     /**
-     * インスタンスを生成
-     * Logger constructor.
+     * constructor.
      * @param string $filePath
      * @param string $fileName
+     * @throws KtrRuntimeException
      */
-    public function __construct($fileName = null) {
+    public function __construct($filePath = null, $fileName = null)
+    {
         $conf = Config::factory('app.php');
 
-        if ((bool)$fileName) {
-            $logFile =  $conf->appLogPath . '/' . $fileName;
-        } else {
-            $logFile = $conf->appLogPath . '/' . $conf->defaultAppLogFileName;
-        }
-        $this->logger = new File($logFile);
+        $dir = is_null($filePath) ? $conf->appLogPath : $filePath;
+        $file = is_null($fileName) ? $conf->defaultAppLogFileName : $fileName;
+
+        if(realpath($dir) === false) throw new KtrRuntimeException($dir . ': no such directory.');
+
+        $logPath = realpath($dir) . '/' . $file;
+
+        $this->logger = new File($logPath);
 
         $req = new Request();
         $uri = $req->getURI();
