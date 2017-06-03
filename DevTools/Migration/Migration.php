@@ -1,10 +1,12 @@
 <?php
 /**
- * マイグレーション実行クラス
- * phinxをそのまま使っています
- * Date: 2017/05/30
+ * KTRLib\DevTools\Migration\Migration
+ *
+ * kotoriコマンド
+ * マイグレーションを実行します。
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\DevTools\Migration;

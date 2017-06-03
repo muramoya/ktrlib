@@ -10,7 +10,7 @@ use KTRLib\Config;
 use KTRLib\KtrRuntimeException;
 
 /**
- * 環境変数を取得する
+ * 環境変数を取得します。
  * @param $key
  * @param $default
  * @return array|false|string
@@ -38,7 +38,7 @@ function env($key, $default = null)
 }
 
 /**
- * langファイルから言語を読み込む
+ * langファイルから言語を読み込みます。
  * @param $id
  * @param array $placeHolder
  * @return string
@@ -58,7 +58,7 @@ function get_lang($id, $placeHolder = array())
 }
 
 /**
- * スネークケースをキャメルケースに変換
+ * スネークケースをキャメルケースに変換します。
  * @param $str
  * @return string
  */
@@ -68,7 +68,7 @@ function camelize($str)
 }
 
 /**
- * スネークケースに変換
+ * 文字列をスネークケースに変換します。
  * @param $str
  * @return string
  */

@@ -1,7 +1,28 @@
 <?php
 /**
- * データ一覧取得Trait
- * Date: 2016/08/06
+ * KTRLib\ResourcesTrait
+ *
+ * モデルのデータ操作をするトレイトです。
+ * モデルに対してCRUDを行うクラスでこのトレイトをuseしてください。
+ *
+ * <code>
+ * <?php
+ *
+ * namespace Sample\Apps\Resources;
+ *
+ * use KTRLib\ResourcesTrait;
+ *
+ * class ResourcesCRUD
+ * {
+ *      use ResourcesTrait;
+ *
+ *      public function __construct()
+ *     {
+ *         $this->setModel('Resources');
+ *     }
+ * }
+ * </code>
+ *
  * @author muramoya
  * @version: 1.0
  */
@@ -28,6 +49,15 @@ trait ResourcesTrait
      */
     private $model;
 
+    /**
+     * 対象のモデルを設定します。
+     * apps/models以下のモデルクラスが対象です。
+     *
+     * .envファイルにてAPP_NAMESPACEを設定してください。
+     * 必ずこのメソッドをコールしてください。
+     *
+     * @param string $name
+     */
     public function setModel($name)
     {
         $class = \env('APP_NAMESPACE').'\\Apps\\Models\\'.$name;
@@ -35,7 +65,8 @@ trait ResourcesTrait
     }
 
     /**
-     * 条件を生成する
+     * 条件を生成します。
+     *
      * @param null $conditions
      * @param array $columns
      * @return array
@@ -65,7 +96,8 @@ trait ResourcesTrait
     }
 
     /**
-     * リソースを複数件取得する
+     * リソースを複数件取得します。
+     *
      * @param null $conditions
      * @param array $columns
      * @param bool $withDeleted
@@ -88,7 +120,8 @@ trait ResourcesTrait
     }
 
     /**
-     * リソースを1件取得する
+     * リソースを1件取得します。
+     *
      * @param null $conditions
      * @param array $columns
      * @param bool $withDeleted
@@ -111,7 +144,7 @@ trait ResourcesTrait
     }
 
     /**
-     * ページングを実行する
+     * ページングを実行します。
      * 指定がなければ最初(=1)のページ @param $page
      * @param $count
      * @param $list
@@ -133,7 +166,8 @@ trait ResourcesTrait
     }
 
     /**
-     * 現在の一覧を取得
+     * ページング: 現在のページのデータ一覧を取得します。
+     *
      * @return mixed
      * @throws KtrRuntimeException
      */
@@ -145,7 +179,8 @@ trait ResourcesTrait
     }
 
     /**
-     * 現在のページを取得
+     * ページング: 現在のページ数を取得します。
+     *
      * @return mixed
      * @throws KtrRuntimeException
      */
@@ -157,7 +192,8 @@ trait ResourcesTrait
     }
 
     /**
-     * 総ページ数を取得
+     * ページング: 総ページ数を取得します。
+     *
      * @return mixed
      * @throws KtrRuntimeException
      */
@@ -169,7 +205,8 @@ trait ResourcesTrait
     }
 
     /**
-     * ページ数リストを取得
+     * ページング: ページ数リストを取得します。
+     *
      * @return mixed
      * @throws KtrRuntimeException
      */
@@ -188,7 +225,8 @@ trait ResourcesTrait
     }
 
     /**
-     * 総件数を取得
+     * 総件数を取得します。
+     *
      * @return mixed
      * @throws KtrRuntimeException
      */
@@ -200,8 +238,9 @@ trait ResourcesTrait
     }
 
     /**
-     * Insert,UpdateのパラメータをSet
-     * Updateの時は第2引数に対象のモデルインスタンスを渡す
+     * Insert,UpdateのパラメータをSetします。
+     * Updateの時は第2引数に対象のモデルインスタンスを渡してください。
+     *
      * @param array $params
      * @param null $model
      * @return bool|null
@@ -229,6 +268,7 @@ trait ResourcesTrait
 
     /**
      * Insert
+     *
      * @param $params
      * @return bool
      * @throws KtrRuntimeException
@@ -242,6 +282,7 @@ trait ResourcesTrait
 
     /**
      * Update
+     *
      * @param $id
      * @param $params
      * @return mixed
@@ -256,6 +297,7 @@ trait ResourcesTrait
 
     /**
      * Delete
+     *
      * @param $id
      * @return mixed
      * @throws KtrRuntimeException

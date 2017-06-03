@@ -1,7 +1,9 @@
 <?php
 /**
- * Routing
- * Date: 2016/06/22
+ * KTRLib\Router
+ *
+ * ルーティングを行います。
+ *
  * @author muramoya
  * @version: 1.0
  */

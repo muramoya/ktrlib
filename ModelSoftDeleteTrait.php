@@ -1,7 +1,37 @@
 <?php
 /**
- * trait Model delete時に論理削除をする
- * Date: 2016/08/25
+ * KTRLib\ModelSoftDeleteTrait
+ *
+ * テーブルのカラムに対しdeleteが実行された時に論理削除をするようにするトレイトです。
+ *
+ * このトレイトはモデルクラスに対してuseしてください。
+ * また、このモデルに紐づくDBのテーブルにはdeleted_atカラムを設定してください。
+ * マイグレーションファイルでsoftdeleteメソッドをコールすると対応したカラムが設定されるので便利です。
+ *
+ * <code>
+ * <?php
+ *
+ * namespace Sample\Apps\Models;
+ *
+ * use KTRLib\ModelSoftDeleteTrait;
+ * use Phalcon\Mvc\Model;
+ *
+ * class Resources extends Model
+ * {
+ *     use ModelSoftDeleteTrait;
+ *
+ *     public $id;
+ *     public $name;
+ *     public $key;
+ *
+ *     public function initialize()
+ *     {
+ *        $this->setSource('resources');
+ *        $this->addSoftDeleteBehavior();
+ *     }
+ * }
+ * </code>
+ *
  * @author muramoya
  * @version: 1.0
  */
@@ -15,7 +45,7 @@ trait ModelSoftDeleteTrait
     public $deleted_at;
 
     /**
-     * ビヘイビアを設定(論理削除)
+     * ビヘイビアを設定します。(論理削除)
      */
     protected function addSoftDeleteBehavior() {
         $params = [
@@ -26,7 +56,8 @@ trait ModelSoftDeleteTrait
     }
 
     /**
-     * Modelのfindを指定がなければdeleted=0で検索するようオーバーライド
+     * Modelのfindを指定がなければdeleted=0で検索するようオーバーライドします。
+     *
      * @param null $parameters
      * @param bool $withDeleted
      * @return Model\ResultsetInterface
@@ -40,7 +71,8 @@ trait ModelSoftDeleteTrait
     }
 
     /**
-     * ModelのfindFirstを指定がなければdeleted=0で検索するようオーバーライド
+     * ModelのfindFirstを指定がなければdeleted=0で検索するようオーバーライドします。
+     *
      * @param null $parameters
      * @param bool $withDeleted
      * @return static
@@ -54,9 +86,10 @@ trait ModelSoftDeleteTrait
     }
 
     /**
-     * 渡されたパラメータにwhere文を追加する
-     * @param $params
-     * @param $append
+     * 渡されたパラメータにwhere文を追加します。
+     *
+     * @param mixed $params
+     * @param string $append
      * @return array|string
      * @throws KtrRuntimeException
      */

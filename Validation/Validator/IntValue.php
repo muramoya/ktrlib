@@ -1,8 +1,14 @@
 <?php
 /**
+ * KTRLib\Validation\Validator\IntValue
+ *
  * 数値のバリデーション
  * PhalconValidationの拡張クラス
- * Date: 2017/06/03
+ *
+ * Phalconには数値のバリデーションクラスが組み込まれていますが
+ * mix,maxの指定を個別でできなかったこととbetweenを指定した時のメッセージを別定義できるようにしたいため
+ * 独自の定義を作成しました。
+ *
  * @author muramoya
  * @version: 1.0
  */

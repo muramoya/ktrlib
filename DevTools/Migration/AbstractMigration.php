@@ -1,9 +1,12 @@
 <?php
 /**
+ * KTRLib\DevTools\Migration\AbstractMigration
+ *
+ * kotoriコマンド
  * マイグレーションファイル抽象クラス
- * Date: 2017/05/30
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\DevTools\Migration;
@@ -20,13 +23,24 @@ abstract class AbstractMigration extends PhAbstMig
      */
     public $table;
 
+    /**
+     * マイグレーション対象のテーブルを指定します。
+     * 必ず最初にこのメソッドをコールしてください。
+     *
+     * @param string $name
+     */
     public function tableName($name)
     {
         $table = $this->table($name, ['id' => false, 'primary_key' => ['id']])
             ->addColumn('id', 'integer', ['identity' => true]);
         $this->table = $table;
     }
-    
+
+    /**
+     * varchar
+     * @param string $name
+     * @return $this
+     */
     public function string($name)
     {
         $this->columnName($name);
@@ -34,6 +48,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * int
+     * @param string $name
+     * @return $this
+     */
     public function integer($name)
     {
         $this->columnName($name);
@@ -41,6 +60,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * bigint
+     * @param string $name
+     * @return $this
+     */
     public function bigint($name)
     {
         $this->columnName($name);
@@ -48,6 +72,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * binary
+     * @param string $name
+     * @return $this
+     */
     public function binary($name)
     {
         $this->columnName($name);
@@ -55,6 +84,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * boolean
+     * @param string $name
+     * @return $this
+     */
     public function boolean($name)
     {
         $this->columnName($name);
@@ -62,6 +96,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * date
+     * @param string $name
+     * @return $this
+     */
     public function date($name)
     {
         $this->columnName($name);
@@ -69,6 +108,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * datetime
+     * @param string $name
+     * @return $this
+     */
     public function datetime($name)
     {
         $this->columnName($name);
@@ -76,6 +120,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * decimal
+     * @param string $name
+     * @return $this
+     */
     public function decimal($name)
     {
         $this->columnName($name);
@@ -83,6 +132,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * float
+     * @param string $name
+     * @return $this
+     */
     public function float($name)
     {
         $this->columnName($name);
@@ -90,6 +144,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * text
+     * @param string $name
+     * @return $this
+     */
     public function text($name)
     {
         $this->columnName($name);
@@ -97,6 +156,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * time
+     * @param string $name
+     * @return $this
+     */
     public function time($name)
     {
         $this->columnName($name);
@@ -104,6 +168,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * timestamp
+     * @param string $name
+     * @return $this
+     */
     public function timestamp($name)
     {
         $this->columnName($name);
@@ -111,6 +180,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * uuid
+     * @param string $name
+     * @return $this
+     */
     public function uuid($name)
     {
         $this->columnName($name);
@@ -118,6 +192,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * blob
+     * @param string $name
+     * @return $this
+     */
     public function blob($name)
     {
         $this->columnName($name);
@@ -125,6 +204,11 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * json
+     * @param string $name
+     * @return $this
+     */
     public function json($name)
     {
         $this->columnName($name);
@@ -132,49 +216,85 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * DEFAULT値
+     * @param string $val
+     * @return $this
+     */
     public function default($val)
     {
         $this->columnOption(__FUNCTION__, $val);
         return $this;
     }
 
+    /**
+     * auto increment
+     * @return $this
+     */
     public function increments()
     {
         $this->columnOption('identity', true);
         return $this;
     }
 
+    /**
+     * unsigned
+     * @return $this
+     */
     public function unsigned()
     {
         $this->columnOption('signed', true);
         return $this;
     }
 
+    /**
+     * データサイズを指定します
+     * @param int $val
+     * @return $this
+     */
     public function size($val)
     {
         $this->columnOption('limit', $val);
         return $this;
     }
 
+    /**
+     * NULL値を許可します
+     * @return $this
+     */
     public function nullable()
     {
         $this->columnOption('null', true);
         return $this;
     }
 
-    public function after($name)
+    /**
+     * AFTERステートメントを追加します
+     * @param string $column
+     * @return $this
+     */
+    public function after($column)
     {
-        $this->columnOption('after', $name);
+        $this->columnOption('after', $column);
         return $this;
     }
 
+    /**
+     * コメントを追加します
+     * @param string $val
+     * @return $this
+     */
     public function comment($val)
     {
         $this->columnOption('comment', $val);
         return $this;
     }
 
-    //モデルトレイトのタイムスタンプカラムを追加
+    /**
+     * モデルトレイトのタイムスタンプカラムを追加します
+     * created_at datetime not null
+     * updated_at datetime not null
+     */
     public function timestampable()
     {
         $this->datetime('created_at')
@@ -183,7 +303,10 @@ abstract class AbstractMigration extends PhAbstMig
             ->add();
     }
 
-    //モデルトレイトの論理削除カラムを追加
+    /**
+     * モデルトレイトの論理削除カラムを追加します
+     * deleted_at datetime default null
+     */
     public function softdelete()
     {
         $this->datetime('deleted_at')
@@ -191,6 +314,10 @@ abstract class AbstractMigration extends PhAbstMig
             ->add();
     }
 
+    /**
+     * カラムに対してユニークインデックスを設定します。
+     * @return $this
+     */
     public function unique()
     {
         $name = $this->args['name'];
@@ -198,12 +325,23 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * ユニークインデックスを追加します。
+     * 複数カラムの組み合わせでインデックスを追加したい時に使用します。
+     * カラム単体に対して指定も可能です。
+     *
+     * @param array $columns
+     */
     public function addUniqueIndex(array $columns)
     {
         $name = implode('_', $columns);
         $this->table->addIndex($columns, ['unique' => true, 'name' => 'idx_' . $this->table->getName() . '_' . $name]);
     }
 
+    /**
+     * カラムに対してインデックスを設定します。
+     * @return $this
+     */
     public function index()
     {
         $name = $this->args['name'];
@@ -211,18 +349,38 @@ abstract class AbstractMigration extends PhAbstMig
         return $this;
     }
 
+    /**
+     * インデックスを追加します。
+     * 複数カラムの組み合わせでインデックスを追加したい時に使用します。
+     * カラム単体に対して指定も可能です。
+     *
+     * @param array $columns
+     */
     public function addIndex(array $columns)
     {
         $name = implode('_', $columns);
         $this->table->addIndex($columns, ['unique' => false, 'name' => 'idx_' . $this->table->getName() . '_' . $name]);
     }
 
+    /**
+     * 外部キーを設定します。
+     *
+     * @param string $column
+     * @param string $referenceTable
+     * @param string $referenceColumn
+     * @param array $option
+     */
     public function addForeignKey($column, $referenceTable, $referenceColumn, $option = array())
     {
         $this->table->addForeignKey($column, $referenceTable, $referenceColumn, $option);
 
     }
 
+    /**
+     * カラム設定を適用します。
+     * チェーンメソッドでカラム設定をした後にこのメソッドをコールすることでその設定が
+     * マイグレーションされます。
+     */
     public function add()
     {
         $params = $this->args;
@@ -231,6 +389,9 @@ abstract class AbstractMigration extends PhAbstMig
         $this->args = [];
     }
 
+    /**
+     * テーブル作成を実行します。
+     */
     public function create()
     {
         $this->table->create();

@@ -1,7 +1,9 @@
 <?php
 /**
- * Bootstrap
- * Date: 2017/05/21
+ * KTRLib\UnitTest
+ *
+ * ユニットテストのBootstrapクラスです。
+ *
  * @author muramoya
  * @version: 1.0
  */

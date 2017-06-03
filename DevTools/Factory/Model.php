@@ -1,9 +1,9 @@
 <?php
 /**
- * モデルファイル生成クラス
- * Date: 2017/05/28
+ * モデルクラスファイルを生成します。
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\DevTools\Factory;

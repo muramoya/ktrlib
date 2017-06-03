@@ -1,9 +1,12 @@
 <?php
 /**
- * ユーザ定義kotoriコマンドファイル生成クラス
- * Date: 2017/05/28
+ * KTRLib\DevTools\Factory\Command
+ *
+ * kotoriコマンド
+ * ユーザ定義kotoriコマンドファイルを生成します。
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\DevTools\Factory;

@@ -1,8 +1,28 @@
 <?php
 /**
- * 設定ファイル読み込みファクトリ
- * 拡張子によって返却クラスを変更する
- * Date: 2017/05/21
+ * KTRLib\Config
+ *
+ * 設定ファイルを読み込みます。
+ * 拡張子によって返却クラスを変更します。
+ *
+ * 第1引数にファイル名を指定すると拡張子を自動で判断し
+ * PhalconのConfigインスタンスを返却します。拡張子はPHP,Ini,Yml(Yaml)が使用可能です。
+ * 指定した設定ファイルが見つからない場合はfalseを返却します。
+ * Configの操作はPhalconに則ります。
+ *
+ * 第1引数の指定方法は2種類あります。デフォルトのconfディレクトリ以下を読み込む方法と
+ * パスを指定する方法です。
+ *
+ * <code>
+ * //confディレクトリ以下のファイルを読み込む方法
+ * $conf = Config::factory('app.php'); //ファイル名のみを指定します。
+ * $line = $conf->foo; //Phalconでは読み込んだ設定ファイルをプロパティ指定で取得できます。
+ *
+ * //パスを指定する方法
+ * $conf = Config::factory('/hoge/bar/piyo.php');
+ * $line = $conf->foo;
+ * </code>
+ *
  * @author muramoya
  * @version: 1.0
  */
@@ -19,7 +39,7 @@ class Config
     /**
      * ファクトリメソッド
      * @param $file
-     * @return bool|ConfigIni|ConfigPhp|ConfigYml
+     * @return bool|\Phalcon\Config
      */
     public static function factory($file) {
         if (strpos($file, '/') === false) {

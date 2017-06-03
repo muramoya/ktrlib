@@ -1,9 +1,34 @@
 <?php
 /**
- * データベースクラス管理
- * Date: 2017/05/22
+ * KTRLib\Database\DbAdopter
+ * データベース接続クラス
+ *
+ * このクラスはPhalconDiに登録されています。
+ * そのため、Diを取得すればこのクラスが利用できます。
+ *
+ * <code>
+ * $di = new Di();
+ * $db = $di->get('db');
+ * </code>
+ *
+ * もしくは直接インスタンス化することも可能です。
+ *
+ * <code>
+ * $db = DbAdopter::factory();
+ * </code>
+ *
+ * データベースの操作はPhalconに則っています。
+ *
+ * 接続するDBドライバは.envで設定します。通常.envはアプリケーションのルートディレクトリ直下に置かれています。
+ * 現在mysql,postgresql,sqlliteが使用可能です。
+ * デフォルトではデータベースの接続にはこのクラスが格納されているディレクトリ以下の設定ファイルを読み込みます。
+ * ファイル名はmysql.php,postgresql.php,sqllite.phpです。
+ *
+ * アプリケーションの設定ファイルディレクトリに同名のファイルを配置すれば独自の設定が可能です。
+ * 設定ファイルディレクトリはアプリケーションルートディレクトリ/confです。
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\Database;

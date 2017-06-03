@@ -1,10 +1,12 @@
 <?php
 /**
- * マイグレーションファイル生成クラス
- * phinxをそのまま使っています
- * Date: 2017/05/28
+ * KTRLib\DevTools\Factory\Seeder
+ *
+ * kotoriコマンド
+ * マイグレーションファイルを生成します。
+ *
  * @author muramoya
- * @version: 1.0
+ * @version: 1.1.0
  */
 
 namespace KTRLib\DevTools\Factory;

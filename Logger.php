@@ -1,7 +1,51 @@
 <?php
 /**
- * Logger
- * Date: 2016/06/25
+ * KTRLib\Logger
+ *
+ * ログの書き込みを行います。
+ *
+ * ログの書き込み先はデフォルトではconf/app.phpのappLogPathになります。
+ * このクラスをインスタンス化する時の第1引数にパスを指定することで
+ * 任意のパスに書き込みが可能です。また第2引数にファイル名を指定することで任意のファイル名で書き込みが可能です。
+ * デフォルトではconf/app.phpのdefaultAppLogFileNameになります。
+ *
+ * <code>
+ * $logger = new Logger(); //デフォルトのパス、ファイル名
+ *
+ * $logger = new Logger('/log/path'); //任意のパス、デフォルトのファイル名
+ *
+ * $logger = new Logger('/log/path', 'logname.log'); //任意のパス、ファイル名
+ *
+ * $logger = new Logger(null, 'logname.log'); //デフォルトのパス、任意のファイル名
+ * </code>
+ *
+ * ログレベルのメソッドをコールすることで対応したレベルのログメッセージを1つ書き込みます。
+ *
+ * <code>
+ * $logger->info('message');
+ * $logger->notice('message');
+ * $logger->warning('message');
+ * $logger->error('message');
+ * $logger->debug('message');
+ * </code>
+ *
+ * またwriteメソッドでは一度に複数のログメッセージを書き込めます。
+ * <code>
+ * //全て同じレベルで書き込む場合
+ * $logger->write(['msg1', 'msg2']);
+ * //または
+ * $logger->write([
+ *     　　　['msg' =>msg1],
+ *          ['msg' =>msg2],
+ *      ]);
+ *
+ * //ログメッセージ個別にレベルを指定する場合
+ * $logger->write([
+ *          ['msg' => 'msg1', 'level' => Logger::INFO],
+ *          ['msg' => 'msg2', 'level' => Logger::NOTICE],
+ *      ]);
+ * </code>
+ *
  * @author muramoya
  * @version: 1.0
  */
@@ -28,7 +72,8 @@ class Logger
     /**
      * インスタンスを生成
      * Logger constructor.
-     * @param null $fileName ファイル名を指定。デフォルトはmain設定ファイルのlog_file_format
+     * @param string $filePath
+     * @param string $fileName
      */
     public function __construct($fileName = null) {
         $conf = Config::factory('app.php');
@@ -46,22 +91,8 @@ class Logger
     }
 
     /**
-     * 複数のログを書き込む
+     * 複数のログを書き込みます
      * @param array $contents
-     *   全て同じレベルで書き込む場合
-     *      $contents = [
-     *          msg1,msg2
-     *      ]
-     *      or
-     *      $contents = [
-     *          [msg =>msg1],
-     *          [msg =>msg2]
-     *      ]
-     *    個別にレベルを指定する場合
-     *      $contents = [
-     *          [msg => msg1, level => notice],
-     *          [msg => msg2, level => warning],
-     *      ]
      * @param null $level $contentsの子要素にlevelを指定しない場合はかならず指定
      */
     public function write(array $contents, $level = null) {
@@ -82,30 +113,46 @@ class Logger
         $this->logger->commit();
     }
 
-    /*
-     * ↓ログ書き込み(単発)
-     ********************************/
-    
+    /**
+     * infoレベルのログを1つ書き込みます
+     * @param string $msg
+     */
     public function info($msg)
     {
         $this->logger->info($msg);
     }
 
+    /**
+     * noticeレベルのログを1つ書き込みます
+     * @param string $msg
+     */
     public function notice($msg)
     {
         $this->logger->notice($msg);
     }
 
+    /**
+     * warningレベルのログを1つ書き込みます
+     * @param string $msg
+     */
     public function warning($msg)
     {
         $this->logger->warning($msg);
     }
 
+    /**
+     * errorレベルのログを1つ書き込みます
+     * @param string $msg
+     */
     public function error($msg)
     {
         $this->logger->error($msg);
     }
 
+    /**
+     * debugレベルのログを1つ書き込みます
+     * @param string $msg
+     */
     public function debug($msg)
     {
         $this->logger->debug($msg);

@@ -1,13 +1,16 @@
 <?php
 /**
- * バリデーション
- * Date: 2017/06/03
+ * KTRLib\Validation\Validation
+ *
+ * バリデーション定義クラス
+ *
  * @author muramoya
  * @version: 1.0
  */
 
 namespace KTRLib\Validation;
 
+use KTRLib\KtrUndefinedException;
 use KTRLib\Validation\Validator\IntValue;
 use KTRLib\Validation\Validator\StringLength;
 use Phalcon\Mvc\Model;
@@ -395,6 +398,7 @@ class Validation extends PhValidation
     /**
      * バリデーション失敗時にバリデーションを終了します。
      * @throws KtrUndefinedException
+     * @return $this
      */
     public function cancel()
     {
@@ -406,6 +410,7 @@ class Validation extends PhValidation
     /**
      * 値がない時に設定されたバリデーションを実行しないようにします。
      * @throws KtrUndefinedException
+     * @return $this
      */
     public function allow_empty()
     {

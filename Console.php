@@ -1,7 +1,7 @@
 <?php
 /**
  * kotoriコマンドbootstrap
- * Date: 2017/06/01
+ *
  * @author muramoya
  * @version: 1.0
  */

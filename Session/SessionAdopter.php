@@ -1,9 +1,22 @@
 <?php
 /**
- * セッションクラス管理
- * Date: 2017/05/22
- * @author muramoya
- * @version: 1.0
+ * KTRLib\Session\SessionAdopter
+ * セッション接続クラス
+ *
+ * セッションを開始します。
+ * セッションの操作はPhalconに則っています。
+ *
+ * <code>
+ * $sess = SessionAdopter::factory();
+ * </code>
+ *
+ * 接続するセッションドライバは.envで設定します。通常.envはアプリケーションのルートディレクトリ直下に置かれています。
+ * 現在file,memcached,redisが使用可能です。
+ * デフォルトではセッションの接続にはこのクラスが格納されているディレクトリ以下の設定ファイルを読み込みます。
+ * ファイル名はmemcached.php,redis.phpです。fileについては設定がありません。
+ *
+ * アプリケーションの設定ファイルディレクトリに同名のファイルを配置すれば独自の設定が可能です。
+ * 設定ファイルディレクトリはアプリケーションルートディレクトリ/confです。
  */
 
 namespace KTRLib\Session;
