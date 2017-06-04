@@ -1,11 +1,4 @@
 <?php
-/**
- * モデルクラスファイルを生成します。
- *
- * @author muramoya
- * @version: 1.1.0
- */
-
 namespace KTRLib\DevTools\Factory;
 
 use KTRLib\Config;
@@ -16,6 +9,12 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * モデルクラスファイルを生成します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
 class Model extends Command
 {
     private const VALID_EXTENDS = ['softdelete', 'timestamp', 'both'];

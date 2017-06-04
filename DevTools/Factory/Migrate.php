@@ -1,14 +1,4 @@
 <?php
-/**
- * KTRLib\DevTools\Factory\Migrate
- *
- * kotoriコマンド
- * マイグレーションファイルを生成します。
- *
- * @author muramoya
- * @version: 1.1.0
- */
-
 namespace KTRLib\DevTools\Factory;
 
 use Symfony\Component\Console\Command\Command;
@@ -17,6 +7,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * kotoriコマンド
+ * マイグレーションファイルを生成します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
 class Migrate extends Command
 {
     protected function configure()

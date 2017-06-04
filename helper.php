@@ -1,7 +1,7 @@
 <?php
 /**
  * 様々な関数群
- * Date: 2017/05/21
+ *
  * @author muramoya
  * @version: 1.0
  */
@@ -11,8 +11,8 @@ use KTRLib\KtrRuntimeException;
 
 /**
  * 環境変数を取得します。
- * @param $key
- * @param $default
+ * @param string $key
+ * @param string $default
  * @return array|false|string
  */
 function env($key, $default = null)
@@ -39,7 +39,7 @@ function env($key, $default = null)
 
 /**
  * langファイルから言語を読み込みます。
- * @param $id
+ * @param string $id
  * @param array $placeHolder
  * @return string
  * @throws KtrRuntimeException
@@ -59,7 +59,7 @@ function get_lang($id, $placeHolder = array())
 
 /**
  * スネークケースをキャメルケースに変換します。
- * @param $str
+ * @param string $str
  * @return string
  */
 function camelize($str)
@@ -69,7 +69,7 @@ function camelize($str)
 
 /**
  * 文字列をスネークケースに変換します。
- * @param $str
+ * @param string $str
  * @return string
  */
 function underscore($str)

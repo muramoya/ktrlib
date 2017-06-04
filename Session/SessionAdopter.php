@@ -1,14 +1,20 @@
 <?php
+namespace KTRLib\Session;
+
+use KTRLib\Config;
+use Phalcon\Session\Adapter\Files;
+use Phalcon\Session\Adapter\Libmemcached;
+use Phalcon\Session\Adapter\Redis;
+
 /**
- * KTRLib\Session\SessionAdopter
  * セッション接続クラス
  *
  * セッションを開始します。
  * セッションの操作はPhalconに則っています。
  *
- * <code>
+ * <pre><code class="language-php">
  * $sess = SessionAdopter::factory();
- * </code>
+ * </code></pre>
  *
  * 接続するセッションドライバは.envで設定します。通常.envはアプリケーションのルートディレクトリ直下に置かれています。
  * 現在file,memcached,redisが使用可能です。
@@ -18,14 +24,6 @@
  * アプリケーションの設定ファイルディレクトリに同名のファイルを配置すれば独自の設定が可能です。
  * 設定ファイルディレクトリはアプリケーションルートディレクトリ/confです。
  */
-
-namespace KTRLib\Session;
-
-use KTRLib\Config;
-use Phalcon\Session\Adapter\Files;
-use Phalcon\Session\Adapter\Libmemcached;
-use Phalcon\Session\Adapter\Redis;
-
 class SessionAdopter
 {
     /**

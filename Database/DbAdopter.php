@@ -1,21 +1,27 @@
 <?php
+namespace KTRLib\Database;
+
+use KTRLib\Config;
+use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Db\Adapter\Pdo\Postgresql;
+use Phalcon\Db\Adapter\Pdo\Sqlite;
+
 /**
- * KTRLib\Database\DbAdopter
  * データベース接続クラス
  *
  * このクラスはPhalconDiに登録されています。
  * そのため、Diを取得すればこのクラスが利用できます。
  *
- * <code>
+ * <pre><code class="language-php">
  * $di = new Di();
  * $db = $di->get('db');
- * </code>
+ * </code></pre>
  *
  * もしくは直接インスタンス化することも可能です。
  *
- * <code>
+ * <pre><code class="language-php">
  * $db = DbAdopter::factory();
- * </code>
+ * </code></pre>
  *
  * データベースの操作はPhalconに則っています。
  *
@@ -30,14 +36,6 @@
  * @author muramoya
  * @version: 1.1.0
  */
-
-namespace KTRLib\Database;
-
-use KTRLib\Config;
-use Phalcon\Db\Adapter\Pdo\Mysql;
-use Phalcon\Db\Adapter\Pdo\Postgresql;
-use Phalcon\Db\Adapter\Pdo\Sqlite;
-
 class DbAdopter
 {
     /**

@@ -1,14 +1,4 @@
 <?php
-/**
- * KTRLib\DevTools\Db\Seed
- *
- * kotoriコマンド
- * データベースシーディングを実行します。
- *
- * @author muramoya
- * @version: 1.1.0
- */
-
 namespace KTRLib\DevTools\Db;
 
 use Symfony\Component\Console\Command\Command;
@@ -16,6 +6,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * kotoriコマンド
+ * データベースシーディングを実行します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
 class Seed extends Command
 {
     protected function configure()

@@ -1,18 +1,16 @@
 <?php
-/**
- * KTRLib\UnitTest
- *
- * ユニットテストのBootstrapクラスです。
- *
- * @author muramoya
- * @version: 1.0
- */
-
 namespace KTRLib;
 
 use Phalcon\Loader;
 use Phalcon\Di\FactoryDefault;
 use Phalcon\Di;
+
+/**
+ * ユニットテストのBootstrapクラスです。
+ *
+ * @author muramoya
+ * @version: 1.0
+ */
 
 class UnitTest
 {

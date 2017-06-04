@@ -1,15 +1,18 @@
 <?php
+
+namespace KTRLib;
+
+use Phalcon\Mvc\Model\Behavior\Timestampable;
+
 /**
- * KTRLib\ModelTimestampableTrait
- *
  * テーブルのカラムに対しinsert,update,deleteが実行された時にタイムスタンプを押すようにするトレイトです。
  *
  * このトレイトはモデルクラスに対してuseしてください。
  * また、このモデルに紐づくDBのテーブルにはcreated_at,updated_teカラムを設定してください。
  * マイグレーションファイルでtimestampableメソッドをコールすると対応したカラムが設定されるので便利です。
  *
- * <code>
- * <?php
+ * <pre><code class="language-php">
+ * &lt;?php
  *
  * namespace Sample\Apps\Models;
  *
@@ -27,19 +30,14 @@
  *     public function initialize()
  *     {
  *        $this->setSource('resources');
- *        $this->addTimestampableBehavior();
+ *        $this->addTimestampableBehavior(); //必ずこのメソッドをコールしてください
  *     }
  * }
- * </code>
+ * </code></pre>
  *
  * @author muramoya
  * @version: 1.0
  */
-
-namespace KTRLib;
-
-use Phalcon\Mvc\Model\Behavior\Timestampable;
-
 trait ModelTimestampableTrait
 {
     public $created_at;

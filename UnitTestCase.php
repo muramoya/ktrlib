@@ -1,12 +1,16 @@
 <?php
+namespace KTRLib;
+
+use Phalcon\DI;
+use Phalcon\Test\FunctionalTestCase as PhalconTestCase;
+
 /**
- * KTRLib\UnitTestCase
  * ユニットテストの基底クラスです。
  *
  * テストケースクラスはこのクラスをextendしてください。
  *
- * <code>
- * <?php
+ * <pre><code class="language-php">
+ * &lt;?php
  * namespace Sample\UnitTest;
  *
  * use KTR\DataBase\Seeder;
@@ -27,18 +31,11 @@
  *    }
  *
  * }
- * </code>
+ * </code></pre>
  *
- * Date: 2016/07/06
  * @author muramoya
  * @version: 1.0
  */
-
-namespace KTRLib;
-
-use Phalcon\DI;
-use Phalcon\Test\FunctionalTestCase as PhalconTestCase;
-
 abstract class UnitTestCase extends PhalconTestCase
 {
     /**

@@ -1,54 +1,4 @@
 <?php
-/**
- * KTRLib\Logger
- *
- * ログの書き込みを行います。
- *
- * ログの書き込み先はデフォルトではconf/app.phpのappLogPathになります。
- * このクラスをインスタンス化する時の第1引数にパスを指定することで
- * 任意のパスに書き込みが可能です。また第2引数にファイル名を指定することで任意のファイル名で書き込みが可能です。
- * デフォルトではconf/app.phpのdefaultAppLogFileNameになります。
- *
- * <code>
- * $logger = new Logger(); //デフォルトのパス、ファイル名
- *
- * $logger = new Logger('/log/path'); //任意のパス、デフォルトのファイル名
- *
- * $logger = new Logger('/log/path', 'logname.log'); //任意のパス、ファイル名
- *
- * $logger = new Logger(null, 'logname.log'); //デフォルトのパス、任意のファイル名
- * </code>
- *
- * ログレベルのメソッドをコールすることで対応したレベルのログメッセージを1つ書き込みます。
- *
- * <code>
- * $logger->info('message');
- * $logger->notice('message');
- * $logger->warning('message');
- * $logger->error('message');
- * $logger->debug('message');
- * </code>
- *
- * またwriteメソッドでは一度に複数のログメッセージを書き込めます。
- * <code>
- * //全て同じレベルで書き込む場合
- * $logger->write(['msg1', 'msg2']);
- * //または
- * $logger->write([
- *     　　　['msg' =>msg1],
- *          ['msg' =>msg2],
- *      ]);
- *
- * //ログメッセージ個別にレベルを指定する場合
- * $logger->write([
- *          ['msg' => 'msg1', 'level' => Logger::INFO],
- *          ['msg' => 'msg2', 'level' => Logger::NOTICE],
- *      ]);
- * </code>
- *
- * @author muramoya
- * @version: 1.0
- */
 
 namespace KTRLib;
 
@@ -56,6 +6,54 @@ use Phalcon\Http\Request;
 use Phalcon\Logger\Adapter\File;
 use Phalcon\Logger\Formatter\Line as LogFormatter;
 
+/**
+ * ログの書き込みを行います。
+ *
+ * ログの書き込み先はデフォルトではconf/app.phpのappLogPathになります。
+ * このクラスをインスタンス化する時の第1引数にパスを指定することで
+ * 任意のパスに書き込みが可能です。また第2引数にファイル名を指定することで任意のファイル名で書き込みが可能です。
+ * デフォルトではconf/app.phpのdefaultAppLogFileNameになります。
+ *
+ * <pre><code class="language-php">
+ * $logger = new Logger(); //デフォルトのパス、ファイル名
+ *
+ * $logger = new Logger('/log/path'); //任意のパス、デフォルトのファイル名
+ *
+ * $logger = new Logger('/log/path', 'logname.log'); //任意のパス、ファイル名
+ *
+ * $logger = new Logger(null, 'logname.log'); //デフォルトのパス、任意のファイル名
+ * </code></pre>
+ *
+ * ログレベルのメソッドをコールすることで対応したレベルのログメッセージを1つ書き込みます。
+ *
+ * <pre><code class="language-php">
+ * $logger->info('message');
+ * $logger->notice('message');
+ * $logger->warning('message');
+ * $logger->error('message');
+ * $logger->debug('message');
+ * </code></pre>
+ *
+ * またwriteメソッドでは一度に複数のログメッセージを書き込めます。
+ * <pre><code class="language-php">
+ * //全て同じレベルで書き込む場合
+ * $logger->write(['msg1', 'msg2']);
+ * //または
+ * $logger->write([
+ *     　　　['msg' => 'msg1'],
+ *          ['msg' => 'msg2'],
+ *      ]);
+ *
+ * //ログメッセージ個別にレベルを指定する場合
+ * $logger->write([
+ *          ['msg' => 'msg1', 'level' => Logger::INFO],
+ *          ['msg' => 'msg2', 'level' => Logger::NOTICE],
+ *      ]);
+ * </code></pre>
+ *
+ * @author muramoya
+ * @version: 1.0
+ */
 class Logger
 {
     /**
@@ -96,7 +94,7 @@ class Logger
     /**
      * 複数のログを書き込みます
      * @param array $contents
-     * @param null $level $contentsの子要素にlevelを指定しない場合はかならず指定
+     * @param null $level
      */
     public function write(array $contents, $level = null) {
         $this->logger->begin();

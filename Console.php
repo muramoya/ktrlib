@@ -1,11 +1,4 @@
 <?php
-/**
- * kotoriコマンドbootstrap
- *
- * @author muramoya
- * @version: 1.0
- */
-
 namespace KTRLib;
 
 use Dotenv\Dotenv;
@@ -15,6 +8,12 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 
+/**
+ * kotoriコマンドbootstrap
+ *
+ * @author muramoya
+ * @version: 1.0
+ */
 
 class Console
 {

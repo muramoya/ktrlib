@@ -1,15 +1,18 @@
 <?php
+
+namespace KTRLib;
+
+use Phalcon\Mvc\Model\Behavior\SoftDelete;
+
 /**
- * KTRLib\ModelSoftDeleteTrait
- *
  * テーブルのカラムに対しdeleteが実行された時に論理削除をするようにするトレイトです。
  *
  * このトレイトはモデルクラスに対してuseしてください。
  * また、このモデルに紐づくDBのテーブルにはdeleted_atカラムを設定してください。
  * マイグレーションファイルでsoftdeleteメソッドをコールすると対応したカラムが設定されるので便利です。
  *
- * <code>
- * <?php
+ * <pre><code class="language-php">
+ * &lt;?php
  *
  * namespace Sample\Apps\Models;
  *
@@ -27,19 +30,14 @@
  *     public function initialize()
  *     {
  *        $this->setSource('resources');
- *        $this->addSoftDeleteBehavior();
+ *        $this->addSoftDeleteBehavior(); //必ずこのメソッドをコールしてください
  *     }
  * }
- * </code>
+ * </code></pre>
  *
  * @author muramoya
  * @version: 1.0
  */
-
-namespace KTRLib;
-
-use Phalcon\Mvc\Model\Behavior\SoftDelete;
-
 trait ModelSoftDeleteTrait
 {
     public $deleted_at;

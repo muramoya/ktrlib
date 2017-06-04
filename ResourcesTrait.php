@@ -1,11 +1,14 @@
 <?php
+
+namespace KTRLib;
+
+use Phalcon\Paginator\Adapter\Model as Paginator;
+
 /**
- * KTRLib\ResourcesTrait
- *
  * モデルのデータ操作をするトレイトです。
  * モデルに対してCRUDを行うクラスでこのトレイトをuseしてください。
  *
- * <code>
+ * <pre><code class="language-php">
  * <?php
  *
  * namespace Sample\Apps\Resources;
@@ -21,15 +24,11 @@
  *         $this->setModel('Resources');
  *     }
  * }
- * </code>
+ * </code></pre>
  *
  * @author muramoya
  * @version: 1.0
  */
-
-namespace KTRLib;
-
-use Phalcon\Paginator\Adapter\Model as Paginator;
 
 trait ResourcesTrait
 {

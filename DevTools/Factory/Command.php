@@ -1,14 +1,4 @@
 <?php
-/**
- * KTRLib\DevTools\Factory\Command
- *
- * kotoriコマンド
- * ユーザ定義kotoriコマンドファイルを生成します。
- *
- * @author muramoya
- * @version: 1.1.0
- */
-
 namespace KTRLib\DevTools\Factory;
 
 use KTRLib\Config;
@@ -18,6 +8,13 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * kotoriコマンド
+ * ユーザ定義kotoriコマンドファイルを生成します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
 class Command extends SyCommand
 {
     protected function configure()

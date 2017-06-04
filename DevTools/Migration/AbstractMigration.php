@@ -1,19 +1,16 @@
 <?php
+namespace KTRLib\DevTools\Migration;
+
+use Phinx\Db\Table;
+use Phinx\Migration\AbstractMigration as PhAbstMig;
+
 /**
- * KTRLib\DevTools\Migration\AbstractMigration
- *
  * kotoriコマンド
  * マイグレーションファイル抽象クラス
  *
  * @author muramoya
  * @version: 1.1.0
  */
-
-namespace KTRLib\DevTools\Migration;
-
-use Phinx\Db\Table;
-use Phinx\Migration\AbstractMigration as PhAbstMig;
-
 abstract class AbstractMigration extends PhAbstMig
 {
     private $args = [];

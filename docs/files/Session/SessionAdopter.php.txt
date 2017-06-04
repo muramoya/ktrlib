@@ -1,0 +1,63 @@
+<?php
+namespace KTRLib\Session;
+
+use KTRLib\Config;
+use Phalcon\Session\Adapter\Files;
+use Phalcon\Session\Adapter\Libmemcached;
+use Phalcon\Session\Adapter\Redis;
+
+/**
+ * セッション接続クラス
+ *
+ * セッションを開始します。
+ * セッションの操作はPhalconに則っています。
+ *
+ * <pre><code class="language-php">
+ * $sess = SessionAdopter::factory();
+ * </code></pre>
+ *
+ * 接続するセッションドライバは.envで設定します。通常.envはアプリケーションのルートディレクトリ直下に置かれています。
+ * 現在file,memcached,redisが使用可能です。
+ * デフォルトではセッションの接続にはこのクラスが格納されているディレクトリ以下の設定ファイルを読み込みます。
+ * ファイル名はmemcached.php,redis.phpです。fileについては設定がありません。
+ *
+ * アプリケーションの設定ファイルディレクトリに同名のファイルを配置すれば独自の設定が可能です。
+ * 設定ファイルディレクトリはアプリケーションルートディレクトリ/confです。
+ */
+class SessionAdopter
+{
+    /**
+     * ファクトリメソッド
+     * @return bool|Libmemcached|Redis|Files
+     */
+    public static function factory() {
+        $driver = env('SESSION_DRIVER', 'file');
+
+        //confディレクトリ以下に設定ファイルがあればそれを設定値として読み込む
+        $conf = Config::factory($driver . '.php');
+        if ((bool)$conf) {
+            $settings = $conf->toArray();
+        } elseif (file_exists("./{$driver}.php")) {
+            $settings = require_once $driver . '.php';
+        } else {
+            $settings = '';
+        }
+
+        switch ($driver) {
+            case 'memcached':
+                $session = new Libmemcached($settings);
+                break;
+            case 'redis':
+                $session = new Redis($settings);
+                break;
+            case 'file':
+                $session = new Files();
+                break;
+            default:
+                return false;
+        }
+
+        $session->start();
+        return $session;
+    }
+}

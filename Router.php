@@ -1,17 +1,15 @@
 <?php
-/**
- * KTRLib\Router
- *
- * ルーティングを行います。
- *
- * @author muramoya
- * @version: 1.0
- */
 
 namespace KTRLib;
 
 use Phalcon\Mvc\Router as PhalconRouter;
 
+/**
+ * ルーティングを行います。
+ *
+ * @author muramoya
+ * @version: 1.0
+ */
 class Router
 {
     /**

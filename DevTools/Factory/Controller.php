@@ -1,14 +1,4 @@
 <?php
-/**
- * KTRLib\DevTools\Factory
- *
- * kotoriコマンド
- * コントローラークラスファイルを生成します。
- *
- * @author muramoya
- * @version: 1.1.0
- */
-
 namespace KTRLib\DevTools\Factory;
 
 use KTRLib\Config;
@@ -16,6 +6,14 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * kotoriコマンド
+ * コントローラークラスファイルを生成します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
 
 class Controller extends Command
 {
