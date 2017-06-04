@@ -1,0 +1,57 @@
+<?php
+namespace KTRLib\DevTools\Migration;
+
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
+
+/**
+ * kotoriコマンド
+ * マイグレーションを実行します。
+ *
+ * @author muramoya
+ * @version: 1.1.0
+ */
+class Migration extends Command
+{
+    protected function configure()
+    {
+        parent::configure();
+        $this->setName('migration')
+            ->setDescription('Migration')
+            ->setDefinition([
+                new InputArgument('manipulation', InputArgument::OPTIONAL, '', 'migrate'),
+                new InputOption('target', 't', InputOption::VALUE_OPTIONAL),
+                new InputOption('date', 'd', InputOption::VALUE_OPTIONAL)
+            ]);
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $exec = '%s %s --configuration=%s -e %s %s 2>&1';
+        $cmd = APP_BASE_PATH . '/vendor/bin/phinx';
+        $args['configuration'] = __DIR__ . '/../Migration/phinx.php';
+        $opt = '';
+        if(strlen($input->getOption('target')) > 0)
+        {
+            $opt .= '-t' . $input->getOption('target');
+        }
+        elseif ($input->getArgument('manipulation') == 'rollback' && strlen($input->getOption('target')) == 0)
+        {
+            $opt .= '-t 0';
+        }
+        if(strlen($input->getOption('date') > 0)) $opt .= '-d' . $input->getOption('date');
+
+        $exec = sprintf($exec , $cmd, $input->getArgument('manipulation'), $args['configuration'], 'dev', $opt);
+        putenv('PH_APP_BASE_PATH='.APP_BASE_PATH);
+        exec($exec, $out, $ret);
+        putenv('PH_APP_BASE_PATH=');
+
+        $msgType = $ret === 0 ? '<info>%s</info>' : '<bg=red>%s</bg=red>';
+        $output->writeln(sprintf($msgType, implode("\n", $out)));
+
+        return $ret === 0 ? true : false;
+    }
+}

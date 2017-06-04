@@ -1,0 +1,115 @@
+<?php
+
+namespace KTRLib;
+
+use Phalcon\Mvc\Model\Behavior\SoftDelete;
+
+/**
+ * テーブルのカラムに対しdeleteが実行された時に論理削除をするようにするトレイトです。
+ *
+ * このトレイトはモデルクラスに対してuseしてください。
+ * また、このモデルに紐づくDBのテーブルにはdeleted_atカラムを設定してください。
+ * マイグレーションファイルでsoftdeleteメソッドをコールすると対応したカラムが設定されるので便利です。
+ *
+ * <pre><code class="language-php">
+ * &lt;?php
+ *
+ * namespace Sample\Apps\Models;
+ *
+ * use KTRLib\ModelSoftDeleteTrait;
+ * use Phalcon\Mvc\Model;
+ *
+ * class Resources extends Model
+ * {
+ *     use ModelSoftDeleteTrait;
+ *
+ *     public $id;
+ *     public $name;
+ *     public $key;
+ *
+ *     public function initialize()
+ *     {
+ *        $this->setSource('resources');
+ *        $this->addSoftDeleteBehavior(); //必ずこのメソッドをコールしてください
+ *     }
+ * }
+ * </code></pre>
+ *
+ * @author muramoya
+ * @version: 1.0
+ */
+trait ModelSoftDeleteTrait
+{
+    public $deleted_at;
+
+    /**
+     * ビヘイビアを設定します。(論理削除)
+     */
+    protected function addSoftDeleteBehavior() {
+        $params = [
+            'field' => 'deleted_at',
+            'value' => date('Y-m-d H:i:s')
+        ];
+        $this->addBehavior(new SoftDelete($params));
+    }
+
+    /**
+     * Modelのfindを指定がなければdeleted=0で検索するようオーバーライドします。
+     *
+     * @param null $parameters
+     * @param bool $withDeleted
+     * @return Model\ResultsetInterface
+     */
+    public static function find($parameters = null, $withDeleted = false) {
+        $isNotDeleted = 'deleted_at IS NULL';
+        if (!$withDeleted) {
+            $parameters = self::appendParams($parameters, $isNotDeleted);
+        }
+        return parent::find($parameters);
+    }
+
+    /**
+     * ModelのfindFirstを指定がなければdeleted=0で検索するようオーバーライドします。
+     *
+     * @param null $parameters
+     * @param bool $withDeleted
+     * @return static
+     */
+    public static function findFirst($parameters = null, $withDeleted = false) {
+        $isNotDeleted = 'deleted_at IS NULL';
+        if (!$withDeleted) {
+            $parameters = self::appendParams($parameters, $isNotDeleted);
+        }
+        return parent::findFirst($parameters);
+    }
+
+    /**
+     * 渡されたパラメータにwhere文を追加します。
+     *
+     * @param mixed $params
+     * @param string $append
+     * @return array|string
+     * @throws KtrRuntimeException
+     */
+    private static function appendParams($params, $append) {
+        if ($params === null) {
+            $params = $append;
+        }
+        elseif (is_array($params)) {
+            if (isset($params[0])) {
+                $params[0] .= ' AND ' . $append;
+            } elseif (isset($params['conditions'])) {
+                $params['conditions'] .= ' AND ' . $append;
+            } elseif (empty($params)) {
+                $params['conditions'] = $append;
+            } else {
+                throw new KtrRuntimeException('Undefined Params received');
+            }
+
+        } else {
+            $params .= ' AND ' . $append;
+        }
+        return $params;
+    }
+
+}
