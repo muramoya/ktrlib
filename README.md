@@ -1,5 +1,7 @@
 kotori frameworkのコアライブラリ群です。
 
+各ライブラリの仕様については[リファレンス](https://muramoya.github.io/ktrlib/)をご覧ください。
+
 インストール
 
 ```
