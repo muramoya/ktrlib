@@ -37,12 +37,12 @@ use Phalcon\Logger\Formatter\Line as LogFormatter;
  * またwriteメソッドでは一度に複数のログメッセージを書き込めます。
  * <pre><code class="language-php">
  * //全て同じレベルで書き込む場合
- * $logger->write(['msg1', 'msg2']);
+ * $logger->write(['msg1', 'msg2'], Logger::INFO);
  * //または
  * $logger->write([
  *     　　　['msg' => 'msg1'],
  *          ['msg' => 'msg2'],
- *      ]);
+ *      ], Logger::INFO);
  *
  * //ログメッセージ個別にレベルを指定する場合
  * $logger->write([

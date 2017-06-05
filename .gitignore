@@ -1,3 +1,5 @@
 vendor
 composer.lock
 testing
+.gitignore
+docs/phpdoc*
