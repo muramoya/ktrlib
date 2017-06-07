@@ -49,7 +49,7 @@ class Router
             $this->init();
             $controller = $nameSpace . $settings['controller'];
 
-            $this->router->setHandler(new $controller);
+            $this->router->setHandler($controller, true);
             $this->router->setPrefix($baseUrl);
             unset($settings['controller']);
             $this->setAction($settings);
