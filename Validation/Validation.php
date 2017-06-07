@@ -23,6 +23,10 @@ class Validation extends PhValidation
     private $ruleName = null;
     private $rules = [];
 
+    private const SPECIFICAL_MESSAGE_KEY_RULES = ['filesize', 'mimetype', 'file_resolution', 'min_length', 'max_length'];
+    private const FILE_RULES = ['filesize', 'mimetype', 'file_resolution'];
+    private const STR_LENGTH_RULES = ['min_length', 'max_length'];
+    
     /**
      * このクラスがnewされた時にバリデーションルールをセットします。
      * このクラスを継承して使う場合はこのメソッドをオーバライドしてバリデーションルールを設定してください。
@@ -44,7 +48,7 @@ class Validation extends PhValidation
     /**
      * バリデーションメッセージを設定します。
      * メッセージを設定しなかったバリデーションルールはPhalconのデフォルトメッセージが表示されます。
-     * @param  $msg
+     * @param  string $msg
      * @return $this
      * @throws KtrUndefinedException
      */
@@ -57,25 +61,77 @@ class Validation extends PhValidation
             switch ($this->ruleName)
             {
                 case 'filesize':
-                    $this->rules[$this->ruleName]['messageSize'] = $msg;
+                    $this->rules[$this->ruleNameGroup]['messageSize'] = $msg;
                     break;
                 case 'mimetype':
-                    $this->rules[$this->ruleName]['messageType'] = $msg;
+                    $this->rules[$this->ruleNameGroup]['messageType'] = $msg;
                     break;
                 case 'file_resolution':
-                    $this->rules[$this->ruleName]['messageResolution'] = $msg;
+                    $this->rules[$this->ruleNameGroup]['messageResolution'] = $msg;
                     break;
                 case 'min_length':
-                    $this->rules[$this->ruleName]['messageMinimum'] = $msg;
+                    $this->rules[$this->ruleNameGroup]['messageMinimum'] = $msg;
                     break;
                 case 'max_length':
-                    $this->rules[$this->ruleName]['messageMaximum'] = $msg;
+                    $this->rules[$this->ruleNameGroup]['messageMaximum'] = $msg;
+                    break;
+                default:
+                    $this->rules[$this->ruleNameGroup]['message'] = $msg;
                     break;
             }
         }
         else
         {
             $this->rules[$this->ruleName]['message'] = $msg;
+        }
+        return $this;
+    }
+
+    /**
+     * ルールを指定してバリデーションメッセージを設定します。
+     *
+     * @param  string $rule
+     * @param  string $msg
+     * @return $this
+     * @throws KtrUndefinedException
+     */
+    public function setRuleMessage($rule, $msg)
+    {
+        if(in_array($rule, self::SPECIFICAL_MESSAGE_KEY_RULES))
+        {
+            if (in_array($rule, self::FILE_RULES))
+            {
+                $group = 'file';
+            }
+            elseif (in_array($rule, self::STR_LENGTH_RULES))
+            {
+                $group = 'string_length';
+            }
+            switch ($rule)
+            {
+                case 'filesize':
+                    $this->rules[$group]['messageSize'] = $msg;
+                    break;
+                case 'mimetype':
+                    $this->rules[$group]['messageType'] = $msg;
+                    break;
+                case 'file_resolution':
+                    $this->rules[$group]['messageResolution'] = $msg;
+                    break;
+                case 'min_length':
+                    $this->rules[$group]['messageMinimum'] = $msg;
+                    break;
+                case 'max_length':
+                    $this->rules[$group]['messageMaximum'] = $msg;
+                    break;
+                default:
+                    $this->rules[$group]['message'] = $msg;
+                    break;
+            }
+        }
+        else
+        {
+            $this->rules[$rule]['message'] = $msg;
         }
         return $this;
     }
