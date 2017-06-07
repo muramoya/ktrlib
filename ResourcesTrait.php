@@ -276,7 +276,9 @@ trait ResourcesTrait
     {
         if (empty($params)) throw new KtrRuntimeException('No params set');
         $this->setValues($params);
-        return $this->model->save();
+        $res = $this->model->save();
+        $this->errorHandle($res);
+        return $res;
     }
 
     /**
@@ -291,7 +293,9 @@ trait ResourcesTrait
     {
         if (strlen((string)$id) < 1 || empty($params)) throw new KtrRuntimeException('No conditions or params set');
         $resource = $this->getOneResource($id);
-        return $resource->update($params);
+        $res = $resource->update($params);
+        $this->errorHandle($res);
+        return $res;
     }
 
     /**
@@ -306,7 +310,21 @@ trait ResourcesTrait
         if (strlen((string)$id) < 1) throw new KtrRuntimeException('No conditions set');
 
         $resource = $this->getOneResource($id);
-        $ret = $resource ? $resource->delete() : false;
-        return $ret;
+        $res = $resource ? $resource->delete() : false;
+        $this->errorHandle($res);
+        return $res;
+    }
+
+    private function errorHandle($res)
+    {
+        if(!$res)
+        {
+            $logger = new Logger();
+            foreach ($this->model->getMessages() as $message)
+            {
+                $logger->error($message);
+            }
+            throw new KtrRuntimeException('Database manipulation error has occurred');
+        }
     }
 }
