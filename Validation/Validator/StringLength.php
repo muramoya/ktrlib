@@ -22,7 +22,7 @@ class StringLength extends Validator
 {
     public function validate(\Phalcon\Validation $validation, $attribute)
     {
-        $value = intval($validation->getValue($attribute));
+        $value = $validation->getValue($attribute);
         $max =  $this->getOption('max');
         $min = $this->getOption('min');
 
