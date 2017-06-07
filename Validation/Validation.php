@@ -89,7 +89,7 @@ class Validation extends PhValidation
 
         foreach ($this->rules as $ruleName => $param)
         {
-            $class = $this->factoryValidator($param);
+            $class = $this->factoryValidator($ruleName, $param);
             $this->add($this->fieldName, $class);
         }
         $this->fieldName = null;
@@ -423,14 +423,13 @@ class Validation extends PhValidation
 
     /**
      * バリデータクラスを作成します。
+     * @param string $ruleName
      * @param $param
      * @return PhValidation\ValidatorInterface
      */
-    private function factoryValidator($param)
+    private function factoryValidator($ruleName, $param)
     {
-        $rule = is_null($this->ruleNameGroup) ? $this->ruleName : $this->ruleNameGroup;
-
-        switch ($rule)
+        switch ($ruleName)
         {
             case 'required':
                 return new PhValidation\Validator\PresenceOf($param);
