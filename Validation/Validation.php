@@ -23,10 +23,12 @@ class Validation extends PhValidation
     private $ruleName = null;
     private $rules = [];
 
-    private const SPECIFICAL_MESSAGE_KEY_RULES = ['filesize', 'mimetype', 'file_resolution', 'min_length', 'max_length'];
+    private const SPECIFICAL_MESSAGE_KEY_RULES = ['filesize', 'mimetype', 'file_resolution', 'min_length', 'max_length', 'between_length', 'min', 'max', 'between'];
     private const FILE_RULES = ['filesize', 'mimetype', 'file_resolution'];
-    private const STR_LENGTH_RULES = ['min_length', 'max_length'];
-    
+    private const STR_LENGTH_RULES = ['min_length', 'max_length', 'between_length'];
+    private const VALUE_LENGTH_RULES = ['min', 'max', 'between'];
+
+
     /**
      * このクラスがnewされた時にバリデーションルールをセットします。
      * このクラスを継承して使う場合はこのメソッドをオーバライドしてバリデーションルールを設定してください。
@@ -75,6 +77,12 @@ class Validation extends PhValidation
                 case 'max_length':
                     $this->rules[$this->ruleNameGroup]['messageMaximum'] = $msg;
                     break;
+                case 'min':
+                    $this->rules[$this->ruleNameGroup]['messageMin'] = $msg;
+                    break;
+                case 'max':
+                    $this->rules[$this->ruleNameGroup]['messageMax'] = $msg;
+                    break;
                 default:
                     $this->rules[$this->ruleNameGroup]['message'] = $msg;
                     break;
@@ -107,6 +115,11 @@ class Validation extends PhValidation
             {
                 $group = 'string_length';
             }
+            elseif (in_array($rule, self::VALUE_LENGTH_RULES))
+            {
+                $group = 'value';
+            }
+
             switch ($rule)
             {
                 case 'filesize':
@@ -123,6 +136,12 @@ class Validation extends PhValidation
                     break;
                 case 'max_length':
                     $this->rules[$group]['messageMaximum'] = $msg;
+                    break;
+                case 'min':
+                    $this->rules[$group]['messageMin'] = $msg;
+                    break;
+                case 'max':
+                    $this->rules[$group]['messageMax'] = $msg;
                     break;
                 default:
                     $this->rules[$group]['message'] = $msg;
