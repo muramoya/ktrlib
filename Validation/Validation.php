@@ -440,6 +440,15 @@ class Validation extends PhValidation
     }
 
     /**
+     * 現在設定しているルールを取得します
+     * @return array
+     */
+    public function getRules()
+    {
+        return $this->rules;
+    }
+
+    /**
      * バリデータクラスを作成します。
      * @param string $ruleName
      * @param $param
