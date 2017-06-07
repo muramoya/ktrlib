@@ -295,9 +295,11 @@ abstract class AbstractMigration extends PhAbstMig
     public function timestampable()
     {
         $this->datetime('created_at')
+             ->nullable()
              ->add();
         $this->datetime('updated_at')
-            ->add();
+             ->nullable()
+             ->add();
     }
 
     /**
