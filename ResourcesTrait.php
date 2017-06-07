@@ -310,7 +310,8 @@ trait ResourcesTrait
         if (strlen((string)$id) < 1) throw new KtrRuntimeException('No conditions set');
 
         $resource = $this->getOneResource($id);
-        $res = $resource ? $resource->delete() : false;
+        if (!$resource) return false;
+        $res = $resource->delete();
         $this->errorHandle($res);
         return $res;
     }
@@ -322,7 +323,7 @@ trait ResourcesTrait
             $logger = new Logger();
             foreach ($this->model->getMessages() as $message)
             {
-                $logger->error($message);
+                $logger->error($message->getMessage());
             }
             throw new KtrRuntimeException('Database manipulation error has occurred');
         }
