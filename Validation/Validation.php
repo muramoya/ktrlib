@@ -422,6 +422,24 @@ class Validation extends PhValidation
     }
 
     /**
+     * 現在設定しているフィールド名を取得します
+     * @return string
+     */
+    public function getField()
+    {
+        return $this->fieldName;
+    }
+
+    /**
+     * 現在設定しているルール名を取得します
+     * @return string
+     */
+    public function getRuleName()
+    {
+        return $this->ruleName;
+    }
+
+    /**
      * バリデータクラスを作成します。
      * @param string $ruleName
      * @param $param
@@ -451,7 +469,7 @@ class Validation extends PhValidation
                 return new PhValidation\Validator\Numericality($param);
             case 'email':
                 return new PhValidation\Validator\Email($param);
-            case ' blacklist':
+            case 'blacklist':
                 return new PhValidation\Validator\ExclusionIn($param);
             case 'file':
                 return new PhValidation\Validator\File($param);
