@@ -396,6 +396,14 @@ abstract class AbstractMigration extends PhAbstMig
         $this->table->create();
     }
 
+    /**
+     * テーブル更新を実行します。
+     */
+    public function update()
+    {
+        $this->table->update();
+    }
+
     public function columnName($name)
     {
         $this->args['name'] = $name;
