@@ -25,11 +25,19 @@ abstract class AbstractMigration extends PhAbstMig
      * 必ず最初にこのメソッドをコールしてください。
      *
      * @param string $name
+     * @param boolean $isUpdate
      */
-    public function tableName($name)
+    public function tableName($name, $isUpdate = false)
     {
-        $table = $this->table($name, ['id' => false, 'primary_key' => ['id']])
-            ->addColumn('id', 'integer', ['identity' => true]);
+        if (!$isUpdate)
+        {
+            $table = $this->table($name, ['id' => false, 'primary_key' => ['id']])
+                ->addColumn('id', 'integer', ['identity' => true]);
+        }
+        else
+        {
+            $table = $this->table($name);
+        }
         $this->table = $table;
     }
 
